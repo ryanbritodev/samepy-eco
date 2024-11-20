@@ -1,13 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
-
 export const Layout = () => {
   const links = [
-    { text: "Motivação", url: "#motivation" },
-    { text: "SamepyEco", url: "#samepyeco" },
-    { text: "Contato", url: "#contact" },
-    { text: "Login", url: "/login" },
+    { text: "Motivação", url: "/#motivation", id: "motivation" },
+    { text: "SamepyEco", url: "/#samepyeco", id: "samepyeco" },
+    { text: "Contato", url: "/#contact", id: "contact" },
+    { text: "Login", url: "/login", id: "" },
   ];
 
   return (
