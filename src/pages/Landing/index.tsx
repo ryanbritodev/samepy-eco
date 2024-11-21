@@ -23,10 +23,10 @@ export const Landing = () => {
       <div className="absolute -z-50 w-full h-[115vh] left-[0] top-[0] bg-primary-light-green rounded-b-3xl"></div>
       <section className="w-full h-[95vh] z-10 flex flex-col items-center">
         <div className="w-full h-full max-h-[32em] lg:max-h-[48em] bg-backgroundLanding bg-no-repeat bg-cover bg-center rounded-xl flex flex-col items-center pt-[1em] lg:pt-[3em] mt-[2em]">
-          <h1 className="text-white text-5xl w-[12em] text-center font-bold mt-[1.5em]">
+          <h1 className="text-white text-3xl sm:text-5xl w-full max-w-[12em] text-center font-bold mt-[1.5em]">
             Cuide dos seus gastos, cuide do Mundo
           </h1>
-          <p className="text-white text-md w-[32em] text-center mt-[2.5em]">
+          <p className="text-white text-sm sm:text-md w-full max-w-[32em] text-center mt-[2.5em] max-sm:px-[.8em]">
             Acompanhe e gerencie seus gastos energéticos, e economize com o
             SamepyEco, energia renovável, simples e econômica, feita para você,
             pequeno e médio agricultor.
@@ -64,9 +64,9 @@ export const Landing = () => {
           className="w-full max-w-[25em] h-fit object-fit hidden md:flex"
         />
       </section>
-      <div className="absolute -z-50 w-full h-[135vh] sm:h-[115] md:h-[105vh] lg:h-[85vh] left-[0] bg-primary-light-green rounded-bl-3xl rounded-tr-3xl"></div>
+      <div className="absolute -z-50 w-full h-[135vh] sm:h-[115] md:h-[105vh] left-[0] bg-primary-light-green rounded-bl-3xl rounded-tr-3xl"></div>
       <section
-        className="w-full h-[95vh] pt-[2em] flex flex-col justify-start mb-[8em]"
+        className="w-full min-h-[95vh] pt-[2em] flex flex-col justify-start mb-[6em]"
         id="samepyeco"
       >
         <h1 className="text-4xl font-bold text-primary-dark-green justify-self-start">

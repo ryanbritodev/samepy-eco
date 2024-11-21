@@ -51,7 +51,9 @@ export const Header = ({ links }: HeaderProps) => {
           setActiveMenu(!activeMenu);
         }}
       />
-      <ul className="w-full gap-[1em] justify-end items-center text-primary-fluffy-white hidden md:flex">
+      <ul
+        className={`w-full gap-[1em] justify-end items-center text-primary-fluffy-white hidden md:flex`}
+      >
         {links.map((link: link, index: number) => {
           return index === links.length - 1 ? (
             <li>
@@ -97,7 +99,7 @@ export const Header = ({ links }: HeaderProps) => {
 
       <ul
         className={`w-full h-[100vh] justify-center items-center text-primary-fluffy-white bg-primary-light-green fixed z-40 transition-all -top-[100vh] ${
-          activeMenu && "flex flex-col gap-[3em] top-0 burgerActive"
+          activeMenu && "flex flex-col gap-[3em] top-0 left-0 burgerActive md:hidden"
         }`}
       >
         {links.map((link: link, index: number) => {
