@@ -21,7 +21,7 @@ export const Layout = () => {
   if (isAuth) {
     links.push(
       ...[
-        { text: "Estatísticas", url: "/stats", id: "" },
+        { text: "Status", url: "/stats", id: "" },
         { text: "Suporte", url: "/support", id: "" },
         { text: "Conta", url: "/Account", id: "" },
       ]

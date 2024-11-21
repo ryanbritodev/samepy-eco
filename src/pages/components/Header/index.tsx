@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 import useIsWide from "../../../hooks/useIsWide";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 type link = { text: string; url: string; id: string };
 interface HeaderProps {
@@ -14,7 +14,7 @@ export const Header = ({ links, isAuth }: HeaderProps) => {
   const [activeLink, setActiveLink] = useState("");
   const [activeMenu, setActiveMenu] = useState(false);
   const isWide = useIsWide(768);
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -46,7 +46,7 @@ export const Header = ({ links, isAuth }: HeaderProps) => {
       <NavLink
         to="/"
         className={`text-[1.2em] font-bold hover:cursor-pointer ${
-          isAuth || pathname !== "/" ? "text-primary-dark-green" : "text-white"
+          isAuth ? "text-primary-dark-green" : "text-white"
         }`}
         onClick={() => {
           setActiveLink("");
@@ -63,7 +63,9 @@ export const Header = ({ links, isAuth }: HeaderProps) => {
         }}
       />
       <ul
-        className={`w-full gap-[1em] justify-end items-center text-primary-fluffy-white hidden md:flex`}
+        className={`w-full gap-[1em] justify-end items-center  hidden md:flex ${
+          isAuth ? "text-primary-dark-green" : "text-primary-fluffy-white"
+        }`}
       >
         {links.map((link: link, index: number) => {
           return index === links.length - 1 ? (
@@ -73,7 +75,11 @@ export const Header = ({ links, isAuth }: HeaderProps) => {
                 end
                 className={`${
                   link.id && activeLink === link.id && "active-link"
-                } transition-all hover:text-primary-light-green font-semibold border border-primary-fluffy-white hover:border-[#fff] hover:bg-[#fff] px-[1em] py-[.2em] rounded-[1em]`}
+                } transition-all font-semibold px-[1em] py-[.2em] rounded-[1em] ${
+                  isAuth
+                    ? "text-primary-dark-green hover:text-white border border-primary-dark-green hover:bg-primary-dark-green"
+                    : "hover:text-primary-light-green border border-primary-fluffy-white hover:border-[#fff] hover:bg-[#fff]"
+                }`}
                 onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                   if (link.id && link.url.startsWith("/#")) {
                     e.preventDefault();
@@ -92,7 +98,9 @@ export const Header = ({ links, isAuth }: HeaderProps) => {
                 end
                 className={`${
                   link.id && activeLink === link.id && "active-link"
-                } transition-all hover:text-[#fff] font-semibold`}
+                } transition-all font-semibold ${
+                  isAuth ? "hover:text-[#000]" : "hover:text-[#fff]"
+                }`}
                 onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                   if (link.url.startsWith("/#")) {
                     e.preventDefault();
