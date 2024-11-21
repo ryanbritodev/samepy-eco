@@ -20,8 +20,8 @@ export const Landing = () => {
 
   return (
     <main className="w-full h-full">
-      <div className="absolute -z-50 w-full h-[115vh] left-[0] top-[0] bg-primary-light-green rounded-b-3xl"></div>
-      <section className="w-full h-[95vh] z-10 flex flex-col items-center">
+      <div className="absolute -z-50 w-full max-h-[720px] h-[115vh] left-[0] top-[0] bg-primary-light-green rounded-b-3xl"></div>
+      <section className="w-full max-h-[720px] h-[95vh] z-10 flex flex-col items-center">
         <div className="w-full h-full max-h-[32em] lg:max-h-[48em] bg-backgroundLanding bg-no-repeat bg-cover bg-center rounded-xl flex flex-col items-center pt-[1em] lg:pt-[3em] mt-[2em]">
           <h1 className="text-white text-3xl sm:text-5xl w-full max-w-[12em] text-center font-bold mt-[1.5em]">
             Cuide dos seus gastos, cuide do Mundo
@@ -41,7 +41,7 @@ export const Landing = () => {
         </div>
       </section>
       <section
-        className="w-full h-[90vh] flex flex-row mt-[2em] py-[2em] justify-between items-center"
+        className="w-full max-h-[720px] h-fit flex flex-row mt-[2em] py-[6em] justify-between items-start"
         id="motivation"
       >
         <div className="w-full max-w-[28em] flex flex-col gap-[1em] font-bold text-primary-light-black">
@@ -64,9 +64,9 @@ export const Landing = () => {
           className="w-full max-w-[25em] h-fit object-fit hidden md:flex"
         />
       </section>
-      <div className="absolute -z-50 w-full h-[135vh] sm:h-[115] md:h-[105vh] left-[0] bg-primary-light-green rounded-bl-3xl rounded-tr-3xl"></div>
+      <div className="absolute h-full max-h-[920px] md:max-h-[720px] lg:max-h-[680px] xl:max-h-[580px] -z-50 w-full left-[0] bg-primary-light-green rounded-bl-3xl rounded-tr-3xl"></div>
       <section
-        className="w-full min-h-[95vh] pt-[2em] flex flex-col justify-start mb-[6em]"
+        className="w-full max-h-[1320px] h-fit pt-[2em] flex flex-col justify-start mb-[6em]"
         id="samepyeco"
       >
         <h1 className="text-4xl font-bold text-primary-dark-green justify-self-start">
@@ -87,7 +87,7 @@ export const Landing = () => {
         </div>
       </section>
       <section
-        className="w-full h-[85vh] flex flex-col items-center mb-[5em]"
+        className="w-full max-h-[720px] h-fit flex flex-col items-center mb-[5em] mt-[4em]"
         id="contact"
       >
         <h1 className="font-bold text-3xl w-[10em] text-primary-dark-green self-start">

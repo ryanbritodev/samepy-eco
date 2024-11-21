@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
+import useIsWide from "../../../hooks/useIsWide";
 
 type link = { text: string; url: string; id: string };
 interface HeaderProps {
@@ -10,6 +11,7 @@ interface HeaderProps {
 export const Header = ({ links }: HeaderProps) => {
   const [activeLink, setActiveLink] = useState("");
   const [activeMenu, setActiveMenu] = useState(false);
+  const isWide = useIsWide(768);
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -29,8 +31,12 @@ export const Header = ({ links }: HeaderProps) => {
   }, [activeMenu]);
 
   useEffect(() => {
+    if (isWide) {
+      setActiveMenu(false);
+    }
+    
     setActiveMenu(false);
-  }, [activeLink]);
+  }, [activeLink, isWide]);
 
   return (
     <nav className="w-full flex flex-row justify-between">
@@ -45,7 +51,7 @@ export const Header = ({ links }: HeaderProps) => {
       </NavLink>
 
       <BiMenu
-        className="hidden max-md:flex text-white hover:cursor-pointer z-50"
+        className="fixed md:hidden text-white hover:cursor-pointer z-50 right-[2em] bg-primary-dark-green rounded"
         size={"2em"}
         onClick={() => {
           setActiveMenu(!activeMenu);
@@ -99,7 +105,8 @@ export const Header = ({ links }: HeaderProps) => {
 
       <ul
         className={`w-full h-[100vh] justify-center items-center text-primary-fluffy-white bg-primary-light-green fixed z-40 transition-all -top-[100vh] ${
-          activeMenu && "flex flex-col gap-[3em] top-0 left-0 burgerActive md:hidden"
+          activeMenu &&
+          "flex flex-col gap-[3em] top-0 left-0 burgerActive md:hidden"
         }`}
       >
         {links.map((link: link, index: number) => {
