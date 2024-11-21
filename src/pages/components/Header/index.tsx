@@ -2,16 +2,19 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 import useIsWide from "../../../hooks/useIsWide";
+import { useLocation } from "react-router-dom";
 
 type link = { text: string; url: string; id: string };
 interface HeaderProps {
   links: link[];
+  isAuth?: boolean;
 }
 
-export const Header = ({ links }: HeaderProps) => {
+export const Header = ({ links, isAuth }: HeaderProps) => {
   const [activeLink, setActiveLink] = useState("");
   const [activeMenu, setActiveMenu] = useState(false);
   const isWide = useIsWide(768);
+  const { pathname } = useLocation();
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -34,7 +37,7 @@ export const Header = ({ links }: HeaderProps) => {
     if (isWide) {
       setActiveMenu(false);
     }
-    
+
     setActiveMenu(false);
   }, [activeLink, isWide]);
 
@@ -42,7 +45,9 @@ export const Header = ({ links }: HeaderProps) => {
     <nav className="w-full flex flex-row justify-between">
       <NavLink
         to="/"
-        className="text-[1.2em] font-semibold text-[#fff] hover:cursor-pointer"
+        className={`text-[1.2em] font-bold hover:cursor-pointer ${
+          isAuth || pathname !== "/" ? "text-primary-dark-green" : "text-white"
+        }`}
         onClick={() => {
           setActiveLink("");
         }}

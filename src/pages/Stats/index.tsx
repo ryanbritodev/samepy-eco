@@ -1,3 +1,5 @@
 export const Stats = () => {
-  return <></>;
+  return <main>
+    
+  </main>;
 };
