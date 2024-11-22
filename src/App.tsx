@@ -7,21 +7,31 @@ import { Account } from "./pages/Account";
 import { Stats } from "./pages/Stats";
 import { Support } from "./pages/Support";
 import { Register } from "./pages/Register";
+import { NotFound } from "./pages/NotFound";
 
 function App() {
-  const isAuth = true;
+  const isAuth = localStorage.getItem("email") !== null;
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout isAuth={isAuth} />}>
           <Route index element={isAuth ? <Stats /> : <Landing />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="stats" element={<Stats />} />
-          <Route path="account" element={<Account />} />
-          <Route path="support" element={<Support />} />
+          {!isAuth && (
+            <>
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
+            </>
+          )}
+          {isAuth && (
+            <>
+              <Route path="stats" element={<Stats />} />
+              <Route path="account" element={<Account />} />
+              <Route path="support" element={<Support />} />
+            </>
+          )}
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

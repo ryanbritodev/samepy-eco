@@ -1,16 +1,9 @@
 import { useState } from "react";
 import { Input } from "./components/Input";
 
-interface FormData {
-  name: string;
-  email: string;
-  message: string;
-}
-
-export const ContactForm = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
+export const SupportForm = () => {
+  const [formData, setFormData] = useState({
+    reason: "",
     message: "",
   });
 
@@ -21,35 +14,33 @@ export const ContactForm = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFormData({
-      name: "",
-      email: "",
+      reason: "",
       message: "",
     });
 
-    alert(`A mensagem foi enviada ${formData.name}, obrigado!`);
+    alert(
+      `Mensagem de suporte enviada, fique atento ${localStorage.getItem(
+        "name"
+      )}, entraremos em contato em breve!`
+    );
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-[25em] h-full max-h-[28em] flex flex-col justify-center items-center gap-[1em] bg-primary-light-green mt-[3em] rounded-lg p-[1em] py-[2em]"
+      className="w-full max-w-[25em] h-full max-h-[29em] flex flex-col justify-center items-center gap-[1em] bg-primary-light-green mt-[3em] rounded-lg p-[1em] py-[2em]"
     >
+      <h2 className="w-full text-center px-[1em] font-bold text-primary-dark-green text-lg mb-[.8em]">
+        Aconteceu algo? Conte-nos mais, responderemos em breve!
+      </h2>
       <Input
         type="text"
-        label="Seu Nome"
-        name="name"
-        value={formData.name}
-        onChange={handleChange}
-        required
-      />
-      <Input
-        type="text"
-        label="Seu Email"
-        name="email"
-        value={formData.email}
+        label="Motivo"
+        name="reason"
+        value={formData.reason}
         onChange={handleChange}
         required
       />

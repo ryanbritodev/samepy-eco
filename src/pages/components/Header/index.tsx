@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 import useIsWide from "../../../hooks/useIsWide";
-// import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 type link = { text: string; url: string; id: string };
 interface HeaderProps {
@@ -14,7 +14,7 @@ export const Header = ({ links, isAuth }: HeaderProps) => {
   const [activeLink, setActiveLink] = useState("");
   const [activeMenu, setActiveMenu] = useState(false);
   const isWide = useIsWide(768);
-  // const { pathname } = useLocation();
+  const { pathname } = useLocation();
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -67,53 +67,55 @@ export const Header = ({ links, isAuth }: HeaderProps) => {
           isAuth ? "text-primary-dark-green" : "text-primary-fluffy-white"
         }`}
       >
-        {links.map((link: link, index: number) => {
-          return index === links.length - 1 ? (
-            <li>
-              <NavLink
-                to={link.url}
-                end
-                className={`${
-                  link.id && activeLink === link.id && "active-link"
-                } transition-all font-semibold px-[1em] py-[.2em] rounded-[1em] ${
-                  isAuth
-                    ? "text-primary-dark-green hover:text-white border border-primary-dark-green hover:bg-primary-dark-green"
-                    : "hover:text-primary-light-green border border-primary-fluffy-white hover:border-[#fff] hover:bg-[#fff]"
-                }`}
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                  if (link.id && link.url.startsWith("/#")) {
-                    e.preventDefault();
+        {pathname !== "/login" &&
+          pathname !== "/register" &&
+          links.map((link: link, index: number) => {
+            return index === links.length - 1 ? (
+              <li>
+                <NavLink
+                  to={link.url}
+                  end
+                  className={`${
+                    link.id && activeLink === link.id && "active-link"
+                  } transition-all font-semibold px-[1em] py-[.2em] rounded-[1em] ${
+                    isAuth
+                      ? "text-primary-dark-green hover:text-white border border-primary-dark-green hover:bg-primary-dark-green"
+                      : "hover:text-primary-light-green border border-primary-fluffy-white hover:border-[#fff] hover:bg-[#fff]"
+                  }`}
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                     setActiveLink(link.id);
-                    scrollToSection(link.id);
-                  }
-                }}
-              >
-                {link.text}
-              </NavLink>
-            </li>
-          ) : (
-            <li>
-              <NavLink
-                to={link.url}
-                end
-                className={`${
-                  link.id && activeLink === link.id && "active-link"
-                } transition-all font-semibold ${
-                  isAuth ? "hover:text-[#000]" : "hover:text-[#fff]"
-                }`}
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                  if (link.url.startsWith("/#")) {
-                    e.preventDefault();
+                    if (link.id && link.url.startsWith("/#")) {
+                      e.preventDefault();
+                      scrollToSection(link.id);
+                    }
+                  }}
+                >
+                  {link.text}
+                </NavLink>
+              </li>
+            ) : (
+              <li>
+                <NavLink
+                  to={link.url}
+                  end
+                  className={`${
+                    link.id && activeLink === link.id && "active-link"
+                  } transition-all font-semibold ${
+                    isAuth ? "hover:text-[#000]" : "hover:text-[#fff]"
+                  }`}
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                     setActiveLink(link.id);
-                    scrollToSection(link.id);
-                  }
-                }}
-              >
-                {link.text}
-              </NavLink>
-            </li>
-          );
-        })}
+                    if (link.url.startsWith("/#")) {
+                      e.preventDefault();
+                      scrollToSection(link.id);
+                    }
+                  }}
+                >
+                  {link.text}
+                </NavLink>
+              </li>
+            );
+          })}
       </ul>
 
       <ul
@@ -122,47 +124,49 @@ export const Header = ({ links, isAuth }: HeaderProps) => {
           "flex flex-col gap-[3em] top-0 left-0 burgerActive md:hidden"
         }`}
       >
-        {links.map((link: link, index: number) => {
-          return index === links.length - 1 ? (
-            <li>
-              <NavLink
-                to={link.url}
-                end
-                className={`${
-                  link.id && activeLink === link.id && "active-link"
-                } transition-all hover:text-primary-light-green font-semibold border border-primary-fluffy-white hover:border-[#fff] hover:bg-[#fff] px-[1em] py-[.2em] rounded-[1em]`}
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                  if (link.id && link.url.startsWith("/#")) {
-                    e.preventDefault();
+        {pathname !== "/login" &&
+          pathname !== "/register" &&
+          links.map((link: link, index: number) => {
+            return index === links.length - 1 ? (
+              <li>
+                <NavLink
+                  to={link.url}
+                  end
+                  className={`${
+                    link.id && activeLink === link.id && "active-link"
+                  } transition-all hover:text-primary-light-green font-semibold border border-primary-fluffy-white hover:border-[#fff] hover:bg-[#fff] px-[1em] py-[.2em] rounded-[1em]`}
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                     setActiveLink(link.id);
-                    scrollToSection(link.id);
-                  }
-                }}
-              >
-                {link.text}
-              </NavLink>
-            </li>
-          ) : (
-            <li>
-              <NavLink
-                to={link.url}
-                end
-                className={`${
-                  link.id && activeLink === link.id && "active-link"
-                } transition-all hover:text-[#fff] font-semibold`}
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                  if (link.url.startsWith("/#")) {
-                    e.preventDefault();
+                    if (link.id && link.url.startsWith("/#")) {
+                      e.preventDefault();
+                      scrollToSection(link.id);
+                    }
+                  }}
+                >
+                  {link.text}
+                </NavLink>
+              </li>
+            ) : (
+              <li>
+                <NavLink
+                  to={link.url}
+                  end
+                  className={`${
+                    link.id && activeLink === link.id && "active-link"
+                  } transition-all hover:text-[#fff] font-semibold`}
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                     setActiveLink(link.id);
-                    scrollToSection(link.id);
-                  }
-                }}
-              >
-                {link.text}
-              </NavLink>
-            </li>
-          );
-        })}
+                    if (link.url.startsWith("/#")) {
+                      e.preventDefault();
+                      scrollToSection(link.id);
+                    }
+                  }}
+                >
+                  {link.text}
+                </NavLink>
+              </li>
+            );
+          })}
       </ul>
     </nav>
   );

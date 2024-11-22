@@ -1,25 +1,54 @@
+import { useEffect, useState } from "react";
 import { StatsBlock } from "./components/StatsBlock";
+import { findUserById, getEcoData } from "../../api";
 
 export const Stats = () => {
+  const [userData, setUserData] = useState({
+    name: "",
+    cityName: "",
+    countryName: "",
+    savedMoney: "",
+    savedEnergy: "",
+  });
+  const [ecoData, setEcoData] = useState({
+    tempMin: "",
+    tempMax: "",
+  });
+
+  useEffect(() => {
+    if (localStorage.getItem("uId")) {
+      findUserById(localStorage.getItem("uId")).then((res) => {
+        setUserData(res);
+      });
+
+      getEcoData().then((res) => {
+        setEcoData({
+          tempMin: res.feeds[0].field5,
+          tempMax: res.feeds[0].field6,
+        });
+      });
+    }
+  }, []);
+
   const statsData = [
     {
       title: "Energia economizada pelo seu SamepyEco",
-      status: "38Kw/h",
-      subtitle: "de economia por energia renovável",
+      status: `${userData.savedEnergy}Kw/h`,
+      subtitle: "de economia por energia renovável este mês",
     },
     {
       title: "Gastos evitados pelo seu SamepyEco",
-      status: "R$135",
-      subtitle: "economizados, em média",
+      status: `R$${Number(userData.savedMoney) * 2.2}`,
+      subtitle: "economizados este mês",
     },
     {
       title: "Temperatura do tanque quente",
-      status: "40ºC",
+      status: `${ecoData.tempMax}ºC`,
       subtitle: "em média",
     },
     {
       title: "Temperatura do tanque frio",
-      status: "-10ºC",
+      status: `${ecoData.tempMin}ºC`,
       subtitle: "em média",
     },
   ];
