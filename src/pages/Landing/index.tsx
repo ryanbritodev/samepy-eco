@@ -78,10 +78,10 @@ export const Landing = () => {
           })}
         </div>
         <div className="flex flex-col items-center mt-[4em] gap-[1em]">
-          <h3 className="font-bold text-primary-dark-green text-md">
+          <h3 className="font-bold text-primary-dark-green text-xl">
             Veja o SamepyEco em funcionamento!
           </h3>
-          <div className="w-full flex flex-row justify-center items-center gap-[1em] flex-wrap">
+          <div className="w-full flex flex-row justify-center items-center gap-[2em] flex-wrap mt-4">
             <iframe
               width="100%"
               height="315"
