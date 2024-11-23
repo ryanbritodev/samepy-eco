@@ -81,8 +81,29 @@ export const Landing = () => {
           <h3 className="font-bold text-primary-dark-green text-md">
             Veja o SamepyEco em funcionamento!
           </h3>
-          <div className="w-full h-[16em] max-w-[25em] bg-primary-dark-green flex flex-col justify-center items-center rounded-xl">
-            <img src="/assets/images/Landing/playIcon.svg" alt="Start icon" />
+          <div className="w-full flex flex-row justify-center items-center gap-[1em] flex-wrap">
+            <iframe
+              width="100%"
+              height="315"
+              src="https://www.youtube.com/embed/r6GwW2UTQUQ"
+              title="SamepyEco - Global Solution Green Energy"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              className="w-full max-w-[25em] h-[14.0625em] rounded-xl"
+            ></iframe>
+            <iframe
+              width="100%"
+              height="315"
+              src="https://www.youtube.com/embed/r8Rkved31Ug"
+              title="Pitch Samepy 🍃⚡"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              className="w-full max-w-[25em] h-[14.0625em] rounded-xl"
+            ></iframe>
           </div>
         </div>
       </section>
